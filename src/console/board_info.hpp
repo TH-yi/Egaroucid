@@ -39,4 +39,22 @@ struct Board_info {
         res.ply_vec = ply_vec;
         return res;
     }
+
+    void set_board(const std::string &board_state) {
+        board.reset();
+        for (int i = 0; i < board_state.size(); ++i) {
+            int x = i % HW; // 列
+            int y = i / HW; // 行
+            char piece = board_state[i];
+            if (piece == 'X') {
+                board.place_piece(BLACK, x, y); // 黑棋
+            } else if (piece == 'O') {
+                board.place_piece(WHITE, x, y); // 白棋
+            }
+        }
+    }
+
+    void swap_player() {
+        player = (player == BLACK) ? WHITE : BLACK;
+    }
 };
