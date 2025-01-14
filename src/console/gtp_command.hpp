@@ -457,6 +457,21 @@ void gtp_check_command(Board_info *board, State *state, Options *options) {
         case GTP_CMD_ID_LIST_GAMES:
             gtp_list_games(id);
             break;
+        case GTP_CMD_ID_SETBOARD:
+            gtp_setboard(id, arg, board);
+            break;
+        case GTP_CMD_ID_PLAY_BLACK:
+            gtp_play_black(id, arg, board);
+            break;
+        case GTP_CMD_ID_PLAY_WHITE:
+            gtp_play_white(id, arg, board);
+            break;
+        case GTP_CMD_ID_GET_CURRENT_PLAYER:
+            gtp_get_current_player(id, board);
+            break;
+        case GTP_CMD_ID_SWAP_PLAYER:
+            gtp_swap_player(id, board);
+            break;
         default:
             break;
     }
