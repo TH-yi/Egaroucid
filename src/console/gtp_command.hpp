@@ -461,3 +461,38 @@ void gtp_check_command(Board_info *board, State *state, Options *options) {
             break;
     }
 }
+
+void gtp_setboard(int id, std::string arg, Board_info *board) {
+    try {
+        board->set_board(arg); // 调用设置残局的方法
+        std::cout << gtp_head(id) << GTP_ENDL;
+    } catch (...) {
+        std::cout << gtp_error_head(id) << " Invalid board state." << GTP_ENDL;
+    }
+}
+
+void gtp_play_black(int id, std::string arg, Board_info *board) {
+    if (board->player != BLACK) {
+        std::cout << gtp_error_head(id) << " Not black's turn." << GTP_ENDL;
+        return;
+    }
+    gtp_play(id, "black " + arg, board); // 调用现有 play 方法
+}
+
+void gtp_play_white(int id, std::string arg, Board_info *board) {
+    if (board->player != WHITE) {
+        std::cout << gtp_error_head(id) << " Not white's turn." << GTP_ENDL;
+        return;
+    }
+    gtp_play(id, "white " + arg, board); // 调用现有 play 方法
+}
+
+void gtp_get_current_player(int id, Board_info *board) {
+    std::string player = (board->player == BLACK) ? "black" : "white";
+    std::cout << gtp_head(id) << " " << player << GTP_ENDL;
+}
+
+void gtp_swap_player(int id, Board_info *board) {
+    board->swap_player(); // 切换当前玩家
+    std::cout << gtp_head(id) << " Player swapped." << GTP_ENDL;
+}
