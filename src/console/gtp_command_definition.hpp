@@ -36,6 +36,11 @@
 #define GTP_CMD_ID_UNDO 18
 #define GTP_CMD_ID_REG_GENMOVE 19
 #define GTP_CMD_ID_LIST_GAMES 20
+#define GTP_CMD_ID_SETBOARD 21
+#define GTP_CMD_ID_PLAY_BLACK 22
+#define GTP_CMD_ID_PLAY_WHITE 23
+#define GTP_CMD_ID_GET_CURRENT_PLAYER 24
+#define GTP_CMD_ID_SWAP_PLAYER 25
 
 const Command_info gtp_command_data[N_GTP_COMMANDS] = {
     {GTP_CMD_ID_QUIT,               {"quit"},                                                   "",                 "Quit"},
@@ -58,5 +63,10 @@ const Command_info gtp_command_data[N_GTP_COMMANDS] = {
     {GTP_CMD_ID_SHOWBOARD,          {"showboard"},                                              "",                 ""},
     {GTP_CMD_ID_UNDO,               {"undo"},                                                   "",                 ""},
     {GTP_CMD_ID_REG_GENMOVE,        {"reg_genmove"},                                            "",                 ""},
-    {GTP_CMD_ID_LIST_GAMES,         {"list_games"},                                             "",                 ""}
+    {GTP_CMD_ID_LIST_GAMES,         {"list_games"},                                             "",                 ""},
+     {GTP_CMD_ID_SETBOARD,         {"setboard"},         "<XO-string>",  "Set custom board state."},
+    {GTP_CMD_ID_PLAY_BLACK,       {"play_black"},       "<move>",       "Black player plays move."},
+    {GTP_CMD_ID_PLAY_WHITE,       {"play_white"},       "<move>",       "White player plays move."},
+    {GTP_CMD_ID_GET_CURRENT_PLAYER, {"get_current_player"}, "",          "Get the current player color."},
+    {GTP_CMD_ID_SWAP_PLAYER,      {"swap_player"},      "",             "Swap current player."}
 };
